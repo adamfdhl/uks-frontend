@@ -1,0 +1,15 @@
+.SimilarUnit {
+  width: 100%;
+  color: black;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(177, 176, 176);
+  }
+
+  .DetailUnit {
+    display: flex;
+    flex-direction: column;
+  }
+}
