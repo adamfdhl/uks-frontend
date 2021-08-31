@@ -27,7 +27,7 @@ function SimilarUnit({ unit }) {
             </span>
           </p>
           <p className="DetailUnit__seemore">
-            Click untuk menuju detail unit lebih lanjut ->
+            Click untuk menuju detail unit lebih lanjut
           </p>
         </div>
       </div>

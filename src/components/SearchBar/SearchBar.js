@@ -11,10 +11,12 @@ function SearchBar(props) {
 
   const filterOptions = [
     {
+      id: 1,
       value: "unit_kompetensi",
       text: "Unit Kompetensi",
     },
     {
+      id: 2,
       value: "elemen_kompetensi",
       text: "Elemen Kompetensi",
     },
@@ -24,8 +26,8 @@ function SearchBar(props) {
     setShowDropdown((prevShowDropdown) => !prevShowDropdown);
   };
 
-  const applyFilter = () => (selectedValue) => {
-    setSelectedFilter(selectedValue);
+  const applyFilter = (selectedId) => () => {
+    setSelectedFilter(selectedId);
     setShowDropdown(false);
   };
 
@@ -46,8 +48,8 @@ function SearchBar(props) {
             </button>
             {showDropdown && (
               <div className="Dropdown__content">
-                {filterOptions.map((ops, idx) => (
-                  <li key={idx} onClick={applyFilter(ops.value)}>
+                {filterOptions.map((ops) => (
+                  <li key={ops.id} onClick={applyFilter(ops.id)}>
                     {ops.text}
                   </li>
                 ))}
@@ -56,6 +58,9 @@ function SearchBar(props) {
           </div>
         </div>
       </div>
+      {selectedFilter && (
+        <p>Filter : {filterOptions[selectedFilter - 1].text}</p>
+      )}
     </div>
   );
 }
