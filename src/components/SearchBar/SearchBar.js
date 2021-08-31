@@ -24,6 +24,11 @@ function SearchBar(props) {
     setShowDropdown((prevShowDropdown) => !prevShowDropdown);
   };
 
+  const applyFilter = () => (selectedValue) => {
+    setSelectedFilter(selectedValue);
+    setShowDropdown(false);
+  };
+
   return (
     <div className="SearchBar">
       <h4>Cari Unit Kompetensi</h4>
@@ -42,7 +47,7 @@ function SearchBar(props) {
             {showDropdown && (
               <div className="Dropdown__content">
                 {filterOptions.map((ops, idx) => (
-                  <li key={idx} onClick={() => setSelectedFilter(ops.value)}>
+                  <li key={idx} onClick={applyFilter(ops.value)}>
                     {ops.text}
                   </li>
                 ))}
