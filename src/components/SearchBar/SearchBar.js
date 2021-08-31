@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import "./SearchBar.scss";
 
+import FilterIcon from "../../assets/filter_icon.svg";
+
 function SearchBar(props) {
   const [query, setQuery] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
@@ -31,19 +33,22 @@ function SearchBar(props) {
           placeholder="Ketik di sini..."
           onChange={(e) => setQuery(e.target.value)}
         />
-        <div className="Dropdown">
-          <button className="Dropdown__btn" onClick={toggleDropdown}>
-            Filter
-          </button>
-          {showDropdown && (
-            <div className="Dropdown__content">
-              {filterOptions.map((ops, idx) => (
-                <li key={idx} onClick={() => setSelectedFilter(ops.value)}>
-                  {ops.text}
-                </li>
-              ))}
-            </div>
-          )}
+        <div className="container__dropdown">
+          <div className="Dropdown">
+            <button className="Dropdown__btn" onClick={toggleDropdown}>
+              <img src={FilterIcon} alt="filter icon" />
+              Filter
+            </button>
+            {showDropdown && (
+              <div className="Dropdown__content">
+                {filterOptions.map((ops, idx) => (
+                  <li key={idx} onClick={() => setSelectedFilter(ops.value)}>
+                    {ops.text}
+                  </li>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
