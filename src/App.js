@@ -1,18 +1,23 @@
+import { BrowserRouter, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
-import SearchBar from "./components/SearchBar/SearchBar";
-import ValidationResults from "./components/ValidationResults/ValidationResults";
+import Home from "./pages/Home/Home";
+import DetailUnit from "./pages/DetailUnit/DetailUnit";
 
 import "./App.scss";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div className="App__content">
-        <SearchBar />
-        <ValidationResults />
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <div className="App__content">
+          <Route path="/detail/:id" exact>
+            <DetailUnit />
+          </Route>
+          <Route path="/" exact component={Home} />
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

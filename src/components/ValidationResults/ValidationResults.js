@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import SimilarUnit from "../SimilarUnit/SimilarUnit";
 
 function ValidationResults() {
+  const history = useHistory();
+
   const dummyUnit = [
     {
       kode_unit: "1",
@@ -39,11 +42,25 @@ function ValidationResults() {
       similarity_score: 0.33,
     },
   ];
+
+  const handleRedirectDetailUnit = useCallback(
+    (id_unit) => () => {
+      history.push("/detail/" + id_unit);
+    },
+    [history]
+  );
+
   return (
     <div>
       <h4>Similar Results</h4>
       {dummyUnit &&
-        dummyUnit.map((unit, idx) => <SimilarUnit key={idx} unit={unit} />)}
+        dummyUnit.map((unit, idx) => (
+          <SimilarUnit
+            key={idx}
+            unit={unit}
+            onClick={handleRedirectDetailUnit(unit.kode_unit)}
+          />
+        ))}
     </div>
   );
 }

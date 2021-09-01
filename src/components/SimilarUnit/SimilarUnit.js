@@ -5,9 +5,9 @@ import { truncate, getSimilarityColor } from "../../utils/helpers";
 
 import "./SimilarUnit.scss";
 
-function SimilarUnit({ unit }) {
+function SimilarUnit({ unit, onClick }) {
   return (
-    <div className="SimilarUnit">
+    <div className="SimilarUnit" onClick={onClick}>
       <div className="DetailUnit">
         <h4>{unit.judul_unit}</h4>
         <h2>{unit.kode_unit}</h2>
