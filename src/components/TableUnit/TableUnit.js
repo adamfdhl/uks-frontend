@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 import { dummyListUnit } from "../../AppConstants/constants";
 import { truncate } from "../../utils/helpers";
 
@@ -9,9 +10,22 @@ function TableUnit(props) {
   const [listUnit, setListUnit] = useState(null);
   const history = useHistory();
 
-  useEffect(() => {
-    setListUnit(dummyListUnit);
+  const getListUnit = useCallback(() => {
+    console.log(process.env.REACT_APP_DEVELOPMENT_API_URL);
+    axios
+      .get(`${process.env.REACT_APP_DEVELOPMENT_API_URL}/units`)
+      .then((resposne) => {
+        console.log(resposne);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
+
+  useEffect(() => {
+    getListUnit();
+    setListUnit(dummyListUnit);
+  }, [getListUnit]);
 
   const goToDetailUnit = useCallback(
     (idUnit) => () => {
