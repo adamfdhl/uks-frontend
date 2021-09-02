@@ -4,10 +4,15 @@ import axios from "axios";
 import "./SearchBar.scss";
 
 import FilterIcon from "../../assets/filter_icon.svg";
+import { useDispatch } from "react-redux";
+import {
+  updateSimilarUnits,
+  updateIsValidating,
+} from "../../store/slices/SimilarUnits/similarUnitsSlice";
 
 function SearchBar(props) {
   const [query, setQuery] = useState("");
-  const [similarUnits, setSimilarUnits] = useState();
+  const dispatch = useDispatch();
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(null);
 
@@ -41,17 +46,36 @@ function SearchBar(props) {
       query: query,
       filter: selectedFilter ? filterOptions[selectedFilter - 1].value : null,
     };
+    dispatch(
+      updateIsValidating({
+        isValidate: true,
+      })
+    );
     axios
       .post(`${process.env.REACT_APP_DEVELOPMENT_API_URL}/validate`, data)
       .then((response) => {
         if (response.status === 200) {
-          setSimilarUnits(response.data.results);
+          dispatch(
+            updateSimilarUnits({
+              units: response.data.result,
+            })
+          );
+          dispatch(
+            updateIsValidating({
+              isValidate: false,
+            })
+          );
         }
       })
       .catch((error) => {
+        dispatch(
+          updateIsValidating({
+            isValidate: false,
+          })
+        );
         console.log(error);
       });
-  }, [query, filterOptions, selectedFilter]);
+  }, [query, filterOptions, selectedFilter, dispatch]);
 
   return (
     <div className="SearchBar">

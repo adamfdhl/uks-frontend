@@ -23,7 +23,7 @@ function SimilarUnit({ unit, onClick }) {
                 marginLeft: "5px",
               }}
             >
-              {unit.similarity_score * 100}%
+              {unit.similarity_score.toFixed(4) * 100}%
             </span>
           </p>
           <p className="DetailUnit__seemore">
