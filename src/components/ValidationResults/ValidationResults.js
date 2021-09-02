@@ -20,20 +20,23 @@ function ValidationResults() {
     [history]
   );
 
-  return similarUnits.length !== 0 ? (
-    <div>
-      <h4>Similar Results</h4>
-      {similarUnits.map((unit, idx) => (
-        <SimilarUnit
-          key={idx}
-          unit={unit}
-          onClick={handleRedirectDetailUnit(unit.id_unit)}
-        />
-      ))}
-    </div>
-  ) : isValidating ? (
-    <p>Validating...</p>
-  ) : null;
+  return (
+    <>
+      {isValidating && <p>Validating....</p>}
+      {similarUnits.length !== 0 ? (
+        <div>
+          <h4>Similar Results</h4>
+          {similarUnits.map((unit, idx) => (
+            <SimilarUnit
+              key={idx}
+              unit={unit}
+              onClick={handleRedirectDetailUnit(unit.id_unit)}
+            />
+          ))}
+        </div>
+      ) : null}
+    </>
+  );
 }
 
 export default React.memo(ValidationResults);
