@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 
 import { truncate, getSimilarityColor } from "../../utils/helpers";
@@ -6,12 +6,26 @@ import { truncate, getSimilarityColor } from "../../utils/helpers";
 import "./SimilarUnit.scss";
 
 function SimilarUnit({ unit, onClick }) {
+  const isUnitResult = useMemo(() => {
+    if (unit) {
+      if (unit.elemen_kompetensi) return false;
+      return true;
+    }
+  }, [unit]);
+
   return (
     <div className="SimilarUnit" onClick={onClick}>
       <div className="DetailUnit">
-        <h4>{unit.judul_unit}</h4>
-        <h2>{unit.kode_unit}</h2>
-        <p>{truncate(unit.deskripsi_unit, 200)}</p>
+        {isUnitResult ? (
+          <>
+            <h4>{unit.judul_unit}</h4>
+            <h2>{unit.kode_unit}</h2>
+            <p>{truncate(unit.deskripsi_unit, 200)}</p>
+          </>
+        ) : (
+          <h2>{unit.elemen_kompetensi}</h2>
+        )}
+
         <div className="similarity_container">
           <p className="DetailUnit__similarity">
             Tingkat kemiripan
