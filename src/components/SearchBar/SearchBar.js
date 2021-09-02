@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
+import axios from "axios";
 
 import "./SearchBar.scss";
 
@@ -6,21 +7,25 @@ import FilterIcon from "../../assets/filter_icon.svg";
 
 function SearchBar(props) {
   const [query, setQuery] = useState("");
+  const [similarUnits, setSimilarUnits] = useState();
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(null);
 
-  const filterOptions = [
-    {
-      id: 1,
-      value: "unit_kompetensi",
-      text: "Unit Kompetensi",
-    },
-    {
-      id: 2,
-      value: "elemen_kompetensi",
-      text: "Elemen Kompetensi",
-    },
-  ];
+  const filterOptions = useMemo(
+    () => [
+      {
+        id: 1,
+        value: "unit_kompetensi",
+        text: "Unit Kompetensi",
+      },
+      {
+        id: 2,
+        value: "elemen_kompetensi",
+        text: "Elemen Kompetensi",
+      },
+    ],
+    []
+  );
 
   const toggleDropdown = () => {
     setShowDropdown((prevShowDropdown) => !prevShowDropdown);
@@ -30,6 +35,23 @@ function SearchBar(props) {
     setSelectedFilter(selectedId);
     setShowDropdown(false);
   };
+
+  const getSimilarUnits = useCallback(() => {
+    const data = {
+      query: query,
+      filter: selectedFilter ? filterOptions[selectedFilter - 1].value : null,
+    };
+    axios
+      .post(`${process.env.REACT_APP_DEVELOPMENT_API_URL}/validate`, data)
+      .then((response) => {
+        if (response.status === 200) {
+          setSimilarUnits(response.data.results);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [query, filterOptions, selectedFilter]);
 
   return (
     <div className="SearchBar">
@@ -58,7 +80,7 @@ function SearchBar(props) {
               )}
             </div>
           </div>
-          <button type="button" disabled={!query}>
+          <button type="button" disabled={!query} onClick={getSimilarUnits}>
             Submit
           </button>
         </div>

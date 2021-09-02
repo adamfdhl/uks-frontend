@@ -8,7 +8,7 @@ function Home(props) {
   return (
     <>
       <SearchBar />
-      {/* <ValidationResults /> */}
+      <ValidationResults />
       <TableUnit />
     </>
   );

@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import { dummyListUnit } from "../../AppConstants/constants";
 import { truncate } from "../../utils/helpers";
 
 import "./TableUnit.scss";
@@ -11,11 +10,12 @@ function TableUnit(props) {
   const history = useHistory();
 
   const getListUnit = useCallback(() => {
-    console.log(process.env.REACT_APP_DEVELOPMENT_API_URL);
     axios
       .get(`${process.env.REACT_APP_DEVELOPMENT_API_URL}/units`)
-      .then((resposne) => {
-        console.log(resposne);
+      .then((response) => {
+        if (response.status === 200) {
+          setListUnit(response.data.unit);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -24,7 +24,6 @@ function TableUnit(props) {
 
   useEffect(() => {
     getListUnit();
-    setListUnit(dummyListUnit);
   }, [getListUnit]);
 
   const goToDetailUnit = useCallback(
