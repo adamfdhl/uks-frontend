@@ -1,0 +1,17 @@
+.DetailUnit {
+  &__info {
+    &--title {
+      margin: 20px 0;
+      font-size: 40px;
+      font-weight: 700;
+    }
+    &--kode {
+      font-size: 30px;
+      font-weight: 500;
+    }
+    &--deskripsi {
+      margin: 25px 0;
+      font-size: 16px;
+    }
+  }
+}

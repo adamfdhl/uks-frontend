@@ -40,22 +40,27 @@ function SearchBar(props) {
           placeholder="Ketik di sini..."
           onChange={(e) => setQuery(e.target.value)}
         />
-        <div className="container__dropdown">
-          <div className="Dropdown">
-            <button className="Dropdown__btn" onClick={toggleDropdown}>
-              <img src={FilterIcon} alt="filter icon" />
-              Filter
-            </button>
-            {showDropdown && (
-              <div className="Dropdown__content">
-                {filterOptions.map((ops) => (
-                  <li key={ops.id} onClick={applyFilter(ops.id)}>
-                    {ops.text}
-                  </li>
-                ))}
-              </div>
-            )}
+        <div className="container-button">
+          <div className="container-dropdown">
+            <div className="Dropdown">
+              <button className="Dropdown__btn" onClick={toggleDropdown}>
+                <img src={FilterIcon} alt="filter icon" />
+                Filter
+              </button>
+              {showDropdown && (
+                <div className="Dropdown__content">
+                  {filterOptions.map((ops) => (
+                    <li key={ops.id} onClick={applyFilter(ops.id)}>
+                      {ops.text}
+                    </li>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
+          <button type="button" disabled={!query}>
+            Submit
+          </button>
         </div>
       </div>
       {selectedFilter && (

@@ -14,7 +14,7 @@ function SimilarUnit({ unit, onClick }) {
         <p>{truncate(unit.deskripsi_unit, 200)}</p>
         <div className="similarity_container">
           <p className="DetailUnit__similarity">
-            Tingkat kemiripan :
+            Tingkat kemiripan
             <span
               style={{
                 backgroundColor: getSimilarityColor(unit.similarity_score),

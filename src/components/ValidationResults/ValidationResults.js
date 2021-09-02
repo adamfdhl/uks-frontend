@@ -50,19 +50,20 @@ function ValidationResults() {
     [history]
   );
 
-  return (
+  const isShow = true;
+
+  return isShow ? (
     <div>
       <h4>Similar Results</h4>
-      {dummyUnit &&
-        dummyUnit.map((unit, idx) => (
-          <SimilarUnit
-            key={idx}
-            unit={unit}
-            onClick={handleRedirectDetailUnit(unit.kode_unit)}
-          />
-        ))}
+      {dummyUnit.map((unit, idx) => (
+        <SimilarUnit
+          key={idx}
+          unit={unit}
+          onClick={handleRedirectDetailUnit(unit.kode_unit)}
+        />
+      ))}
     </div>
-  );
+  ) : null;
 }
 
 export default React.memo(ValidationResults);

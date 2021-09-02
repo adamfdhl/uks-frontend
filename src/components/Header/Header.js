@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Header.scss";
 
 function Header(props) {
   return (
     <div className="Header">
-      <h4>Unit Kompetensi Search</h4>
+      <Link to="/">Unit Kompetensi Search</Link>
     </div>
   );
 }

@@ -4,5 +4,14 @@
     @media (min-width: 600px) and (max-width: 1000px) {
       padding: 0 100px;
     }
+    @media (min-width: 400px) and (max-width: 600px) {
+      padding: 0 50px;
+    }
+    @media (min-width: 350px) and (max-width: 400px) {
+      padding: 0 25px;
+    }
+    @media (min-width: 260px) and (max-width: 350px) {
+      padding: 0 15px;
+    }
   }
 }
