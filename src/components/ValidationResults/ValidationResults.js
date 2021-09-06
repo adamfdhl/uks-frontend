@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import SimilarUnit from "../SimilarUnit/SimilarUnit";
+import Loader from "../../commons/Loader/Loader";
 import {
   selectSimilarUnits,
   selectIsValidating,
@@ -22,7 +23,21 @@ function ValidationResults() {
 
   return (
     <>
-      {isValidating && <p>Validating....</p>}
+      {isValidating && (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "15px 0",
+          }}
+        >
+          <Loader />
+          <p style={{ marginLeft: "15px" }}>
+            Loading... Please wait it might need several minutes...
+          </p>
+        </div>
+      )}
       {similarUnits.length !== 0 ? (
         <div>
           <h4>Similar Results</h4>
