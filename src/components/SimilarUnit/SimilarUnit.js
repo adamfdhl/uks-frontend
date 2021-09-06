@@ -18,12 +18,21 @@ function SimilarUnit({ unit, onClick }) {
       <div className="DetailUnit">
         {isUnitResult ? (
           <>
-            <h4>{unit.judul_unit}</h4>
-            <h2>{unit.kode_unit}</h2>
+            <h1 style={{ fontWeight: 700, fontSize: "20px", margin: "5px 0" }}>
+              {unit.skkni.skkni}
+            </h1>
+            <h4 style={{ fontWeight: 500, fontSize: "16px", margin: "5px 0" }}>
+              {unit.kode_unit} - {unit.judul_unit}
+            </h4>
             <p>{truncate(unit.deskripsi_unit, 200)}</p>
           </>
         ) : (
-          <h2>{unit.elemen_kompetensi}</h2>
+          <>
+            <h1 style={{ fontWeight: 700, fontSize: "20px", margin: "5px 0" }}>
+              {unit.skkni.skkni}
+            </h1>
+            <h2>{unit.elemen_kompetensi}</h2>
+          </>
         )}
 
         <div className="similarity_container">
