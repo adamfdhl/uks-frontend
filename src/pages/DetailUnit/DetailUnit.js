@@ -53,8 +53,10 @@ function DetailUnit() {
             Kembali
           </button>
           <div className="DetailUnit__info">
-            <h1 className="DetailUnit__info--title">{unit.judul_unit}</h1>
-            <h3 className="DetailUnit__info--kode">{unit.kode_unit}</h3>
+            <h1 className="DetailUnit__info--skkni">{unit.skkni.skkni}</h1>
+            <h2 className="DetailUnit__info--title">
+              {unit.kode_unit} - {unit.judul_unit}
+            </h2>
             <p className="DetailUnit__info--deskripsi">{unit.deskripsi_unit}</p>
           </div>
         </>

@@ -38,17 +38,17 @@ function TableUnit(props) {
       <table>
         <thead>
           <tr>
+            <th>SKKNI</th>
             <th>Kode Unit</th>
             <th>Judul Unit</th>
-            <th>Deskripsi Unit</th>
           </tr>
         </thead>
         <tbody>
           {listUnit.map((unit) => (
             <tr key={unit.id_unit}>
+              <td>{truncate(unit.skkni.skkni, 50)}</td>
               <td>{unit.kode_unit}</td>
               <td>{truncate(unit.judul_unit, 25)}</td>
-              <td>{truncate(unit.deskripsi_unit, 50)}</td>
               <td>
                 <button onClick={goToDetailUnit(unit.id_unit)}>
                   Lihat Detail Unit
